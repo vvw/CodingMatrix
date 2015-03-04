@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Basic operations with vectors</title>
+		<link rel="shortcut icon" type="image/x-icon" href="../../../../../KonoMngr/style/icons/konoicn.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="../../../../../KonoMngr/style/konoguides.css" />
+		<script src="../../../../../KonoMngr/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+  				TeX: { equationNumbers: { autoNumber: "AMS" } }
+			});</script>
+		<link rel="stylesheet" href="../../../../../KonoMngr/highlight/styles/googlecode.css">
+		<script src="../../../../../KonoMngr/highlight/highlight.pack.js" type="text/javascript"></script>
+		<script>hljs.initHighlightingOnLoad();</script>		
+	</head>
+	
+	<body class="kg-content">
+		<header>
+			<h1>Basic operations with vectors</h1>
+		</header>
+		
+		<article class="subsection">
+			<h1>Vector addition and translation</h1>
+			
+			<article class="definition">
+			    <h1>Vector addition</h1>
+			    <p>The addition of two vector is defined as the addition of the values in each corresponding position:
+			    
+			    $$\left[u_1, u_2, \ldots , u_n  \right] + \left[v_1, v_2, \ldots , v_n  \right] = \left[u_1 + v_1, u_2 + v_2, \ldots , u_n + v_n  \right]$$</p>
+			</article>
+			
+			<article class="property">
+			    <h1></h1>
+			    <dl>
+			        <dt>associatiity</dt>
+			            <dd><p>$$(\mathbf{x}+\mathbf{y}) + \mathbf{z} = \mathbf{x} + (\mathbf{y} + \mathbf{z})$$</p></dd>
+			        <dt>commutativity</dt>
+			            <dd><p>$$\mathbf{x}+\mathbf{y} = \mathbf{y} + \mathbf{x}$$</p></dd>
+			    </dl>
+			</article>
+
+		</article>
+		
+		<article class="subsection">
+		    <h1>Vector-scalar multiplication (scaling)</h1>
+		    
+		    <article class="definition">
+		        <h1>Vector multiplication</h1>
+		        <p>Multiplying a vector \(\mathbf{v}\) by a scalar \(\alpha\) is defined as multiplying each element of \(\mathbf{v}\) by \(\alpha\):
+		        
+		        $$\alpha \mathbf{v} = \alpha \left[ v_1, v_2, \ldots, v_n \right] =  \left[ \alpha v_1, \alpha v_2, \ldots, \alpha v_n \right]$$</p>
+		        
+		        <p>For vector,</p>
+		        <ul>
+		            <li>we refer to field elements as <em><i>scalars</i></em>,</li>
+		            <li>we use them to <em>scale</em> vectors.</li>
+		        </ul>
+		        
+		    </article>
+		</article>  
+		
+		<article class="subsection">
+		    <h1>Dot-product: vector multiplication</h1>
+		    
+		    <article class="definition">
+			    <h1>Dot product</h1>
+			    <p>The <em>dot product</em>, or <em>scalar product</em>, is an algebraic operation that takes two equal-length vectors and returns a single number. Let \(\mathbf{u} = \left[ u_1, u_2, \ldots, u_n \right]\) and \(\mathbf{v} = \left[ v_1, v_2, \ldots, v_n \right]\), the dot product is:
+			    
+			    $$\mathbf{u} \cdot \mathbf{v} = \sum_{i = 1}^{n} u_i * v_i$$</p>
+			</article>
+		    
+		    <article class="property">
+		        <h1></h1>
+		        <dl>
+		            <dt>Commutativity</dt>
+		                <dd><p>$$\mathbf{u} \cdot \mathbf{v} = \mathbf{v} \cdot \mathbf{u}$$</p></dd>
+		            <dt>Homogeneity</dt>
+		                <dd><p>$$\left( \alpha \mathbf{u} \right) \cdot \mathbf{v} =  \alpha \left( \mathbf{v} \cdot \mathbf{u} \right)$$</p></dd>
+		            <dt>Distributivity</dt>
+		                <dd><p>$$ \left( \mathbf{u_1} + \mathbf{u_2} \right)  \cdot \mathbf{v} = \mathbf{u_1} \cdot \mathbf{v} + \mathbf{u_2} \cdot \mathbf{v}$$</p></dd>
+		        </dl>
+		    </article>
+		    
+		</article>
+		
+		
+		
+	</body>
+</html>	

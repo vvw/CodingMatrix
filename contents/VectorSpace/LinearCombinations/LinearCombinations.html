@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Linear combinations</title>
+		<link rel="shortcut icon" type="image/x-icon" href="../../../../../KonoMngr/style/icons/konoicn.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="../../../../../KonoMngr/style/konoguides.css" />
+		<script src="../../../../../KonoMngr/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+  				TeX: { equationNumbers: { autoNumber: "AMS" } }
+			});</script>
+		<link rel="stylesheet" href="../../../../../KonoMngr/highlight/styles/googlecode.css">
+		<script src="../../../../../KonoMngr/highlight/highlight.pack.js" type="text/javascript"></script>
+		<script>hljs.initHighlightingOnLoad();</script>		
+	</head>
+	
+	<body class="kg-content">
+		<header>
+			<h1>Linear combinations</h1>
+		</header>
+		
+		<article class="subsection">
+			<article class="definition">
+			    <h1>Linear combination</h1>
+			    <p>Let \(\mathbf{v}_1, \mathbf{v}_2, \ldots , \mathbf{v}_n\) be a set of vector. An expression:
+			    $$\alpha_1 \mathbf{v}_1 + \cdots + \alpha_n \mathbf{v}_n$$
+			    is a <em>linear combination</em> of the vectors \(\mathbf{v}_1, \ldots , \mathbf{v}_n\)</p>
+			    <p>The scalars \(\alpha_1, \cdots, \alpha_n\) are the <em>coefficients</em> of the linear combination.</p>
+			</article>
+			
+			<article class="definition">
+			    <h1>Trivial linear combination</h1>
+			    <p>A linear combination is trivial if the <em>coefficients</em> are <em>all zero</em></p>
+			</article>
+		</article>
+		
+		<article class="subsection">
+		    <h1>Computational problem: finding coefficients</h1>
+		    <p>Many computational and real-life <em>problems</em> can be <em>expresed</em> in terms of <em>linear combinations</em>, with unknown coefficientes. The solution to those problems came after founding the unknown coefficients, i.e.:</p>
+		    <p>Expressing a given vector as a linear combination of other given vectors</p>
+		    <ul>
+		        <li><em>input</em>: a vector \(\mathbf{b}\) and a list \(\left[ \mathbf{v}_1 + \ldots, \mathbf{v}_n \right]\) of vectors</li>
+		        <li><em>output</em>: a list \(\left[ \alpha_1, \ldots, \alpha_n \right]\) of coefficients such that
+		        $$\mathbf{b} = \alpha_1 \mathbf{v}_1 + \cdots + \alpha_n \mathbf{v}_n$$
+		        
+		        or a report thta none exists.
+		        </li>
+		        
+		    </ul>
+		    
+            <dl>
+                <dt>Question:</dt>
+                    <dd><p>Is the solution unique?</p></dd>
+            </dl>
+		    
+		</article>
+		
+	</body>
+</html>	

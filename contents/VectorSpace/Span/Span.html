@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Span</title>
+		<link rel="shortcut icon" type="image/x-icon" href="../../../../../KonoMngr/style/icons/konoicn.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="../../../../../KonoMngr/style/konoguides.css" />
+		<script src="../../../../../KonoMngr/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+  				TeX: { equationNumbers: { autoNumber: "AMS" } }
+			});</script>
+		<link rel="stylesheet" href="../../../../../KonoMngr/highlight/styles/googlecode.css">
+		<script src="../../../../../KonoMngr/highlight/highlight.pack.js" type="text/javascript"></script>
+		<script>hljs.initHighlightingOnLoad();</script>		
+	</head>
+	
+	<body class="kg-content">
+		<header>
+			<h1>Span</h1>
+		</header>
+		
+		<article class="subsection">
+			
+			<article class="definition">
+			    <h1>Span</h1>
+			    <p>The set of all linera combinations of some vectors \(\mathbf{v}_1, \mathbf{v}_2, \ldots , \mathbf{v}_n\) is called the <em>span</em> of these vectors.</p>
+			    <p>Written \(\text{Span } \left\{ \mathbf{v}_1, \ldots , \mathbf{v}_n \right\}\)</p>
+			</article>  
+			
+		</article>
+		
+		<article class="exercise">
+		    <h1>Span over GF(2) vectors</h1>
+		    <p>How many vectors are in the \(\text{Span } \left\{ [1,1], [0,1] \right\}\) over the field GF(2)?</p>
+		    <h2></h2>
+		    <!-- solution -->
+		    <p>The liner combinations are:
+		    $$\begin{array}{lll}
+		        0[1,1] + 0[0,1] & = & [0,0] \\
+		        0[1,1] + 1[0,1] & = & [0,1] \\
+		        1[1,1] + 0[0,1] & = & [1,1] \\
+		        1[1,1] + 1[0,1] & = & [1,0] 
+		    \end{array}$$
+		    Thus there are <em>four vectors</em>.
+		    </p>
+		</article>
+		
+		<article class="subsection">
+
+            <article class="definition">
+                <h1>Generators</h1>
+                <p>Let \(\mathcal{V}\) be aset of vectors. If \(\mathbf{v}_1, \ldots , \mathbf{v}_n\) are vectors such that \(\mathcal{V} = \text{Span } \{ \mathbf{v}_1, \ldots , \mathbf{v}_n \}\) then:</p>
+                <ul>
+                    <li>\(\{ \mathbf{v}_1, \ldots , \mathbf{v}_n \}\) is a <em>generating</em> set for \(\mathcal{V}\)</li>
+                    
+                    <li>vectors \(\mathbf{v}_1, \ldots , \mathbf{v}_n\) are refered as <em>generators</em> for \(\mathcal{V}\)</li>
+                    
+                </ul>
+                
+            </article>
+            
+            <article class="observation">
+                <h1></h1>
+                <p></p>
+            </article> 
+		</article>  
+		
+	</body>
+</html>	
