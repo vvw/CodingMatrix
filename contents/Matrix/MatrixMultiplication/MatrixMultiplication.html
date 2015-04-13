@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Matrix multiplication</title>
+		<link rel="shortcut icon" type="image/x-icon" href="../../../../../KonoMngr/style/icons/konoicn.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="../../../../../KonoMngr/style/konoguides.css" />
+		<script src="../../../../../KonoMngr/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+  				TeX: { equationNumbers: { autoNumber: "AMS" } }
+			});</script>
+		<link rel="stylesheet" href="../../../../../KonoMngr/highlight/styles/googlecode.css">
+		<script src="../../../../../KonoMngr/highlight/highlight.pack.js" type="text/javascript"></script>
+		<script>hljs.initHighlightingOnLoad();</script>		
+	</head>
+	
+	<body class="kg-content">
+		<header>
+			<h1>Matrix multiplication</h1>
+		</header>
+		
+		<article class="subsection">
+			<h1>Matrix-vector multiplication</h1>
+			
+			<h2 id="">in terms of linear combinations</h2>
+			<p>Let \(M\) be a \(R \times C\) matrix and \(\mathbf{v}\) a \(C\)-vector then:
+			$$M * \mathbf{v} = \sum_{c \in C} \mathbf{v}[c] * (c \text{ column of } M)$$
+			<em>iif</em> \(\mathbf{v}\) is a \(C\)-vector; e.g.,
+			$$\left[\begin{matrix}
+			    1 & 2 & 3 \\
+			    10 & 20 & 30
+			\end{matrix}\right] * [7, 0, 4] =  7[1, 10] + 0[2, 20] + 4[3,30] = [19, 190]
+			$$
+			</p>
+			
+			<h2 id="">in terms of dot-products</h2>
+			<p>Let \(M\) be a \(R \times C\) matrix and \(\mathbf{u}\) a \(C\)-vector. \(M * \mathbf{u}\) is the \(R\)-vector \(\mathbf{v}\) such that \(\mathbf{v}[r]\) is the <em>dot-product</em> of the <em>row</em> \(r\) of \(M\) with \(\mathbf{u}\)
+			$$M * \mathbf{u} = \left[
+			\begin{matrix}
+			r_1 \\ \hline
+			r_2 \\ \hline
+			r_3
+			\end{matrix}
+			\right] * \left[\begin{matrix}
+			    \\ 
+			    \mathbf{u} \\
+			\end{matrix}\right] =
+			\left[\begin{matrix}
+			r_1 \cdot \mathbf{u} \\ \hline
+			r_2 \cdot \mathbf{u} \\ \hline
+			r_3 \cdot \mathbf{u} 
+			\end{matrix}\right] = \mathbf{v}$$
+			
+			e.g.,
+			$$\left[\begin{matrix}
+			    1 & 2 & 3 \\
+			    10 & 20 & 30
+			\end{matrix}\right] * [7, 0, 4] =  \left[ \, [7, 0, 4] \cdot [1,2,3], \,\,\, [7, 0, 4] \cdot [10,20,30] \, \right] = [19, 190]
+			$$
+			</p>
+			
+			<h2 id="">Ordinary definition: exploting sparsity in matrix</h2>
+            <p>Let \(M\) be a \(R \times C\) matrix and \(\mathbf{u}\) a \(C\)-vector. \(M * \mathbf{u}\) is the \(R\)-vector \(\mathbf{v}\) such that \(\forall r \in R\),
+            $$\mathbf{v}[r] = \sum_{c \in C} M[r,c] * \mathbf{u}[c]$$
+            </p>
+            <p>But this <em>dowsn't exploit sparsity!</em></p>
+            
+            
+            <article class="idea"><ul>
+                <li>initialize output vector \(\mathbf{v}\) to zero vector</li>
+                <li>iterate over nonzero entries of \(M\), adding terms according to ordinary definition
+                $$\mathbf{v}[i] =\mathbf{v}[i] + M[i,j] * \mathbf{u}[j]$$</li>
+            </ul>
+            </article>
+            
+            <article class="property">
+                <h1>Matrix-vector multiplication</h1>
+                <p>Let \(A\) be an \(R \times C\) matrix:</p>
+                <ul>
+                    <li>For any \(C\)-vector \(\mathbf{v}\) and any scalar \(\alpha\),
+                    $$A * (\alpha \mathbf{v}) = \alpha (A * \mathbf{v})$$</li>
+                    <li>For any \(C\)-vectors \(\mathbf{u}\) and \(\mathbf{v}\),
+                    $$A * (\mathbf{u})+ \mathbf{v}) = A*\mathbf{u} + A*\mathbf{v} $$</li>
+                </ul>
+                
+            </article>
+			
+		</article>
+		
+		<article class="subsection">
+		    <h1>Vector-matrix multiplication</h1>
+		    
+		    <h2 id="">in terms of linear combinations</h2>
+			<p>Let \(M\) be a \(R \times C\) matrix and \(\mathbf{w}\) a \(R\)-vector then:
+			$$\mathbf{w} * M = \sum_{r \in R} \mathbf{w}[r] * (r \text{ row of } M)$$
+			<em>iif</em> \(\mathbf{w}\) is a \(R\)-vector; e.g.,
+			$$[3 4] * \left[\begin{matrix}
+			    1 & 2 & 3 \\
+			    10 & 20 & 30
+			\end{matrix}\right] =  3[1, 2, 3] + 4[10, 20, 30] = [43, 86, 129]
+			$$
+			</p>
+			
+			<h2 id="">in terms of dot-products</h2>
+			<p>Let \(M\) be a \(R \times C\) matrix and \(\mathbf{w}\) a \(R\)-vector. \(\mathbf{w} * M\) is the \(C\)-vector \(\mathbf{v}\) such that \(\mathbf{v}[c]\) is the <em>dot-product</em> of the <em>column</em> \(c\) of \(M\) with \(\mathbf{w}\)
+			$$\mathbf{w} * M = [\,\,\, \mathbf{w} \,\,\,] \left[
+			\begin{array}{c|c|c}
+			c_1 & c_2 & c_3
+			\end{array}
+			\right] =
+			\left[
+			\mathbf{w} \cdot c_1,
+			\mathbf{w} \cdot c_2,
+			\mathbf{w} \cdot c_3\right] = \mathbf{v}$$
+			</p>
+		    
+		</article>
+		
+		<article class="subsection">
+		    <h1>Matrix-matrix multiplication</h1>
+		    <ul>
+		        <li>If \(A\) is a \(R \times S\) matrix, and \(B\) is a \(S \times T\) matrix, it is legal to multiply \(A\) times \(B\)</li>
+		        <li>denoted as \(AB\) or \(A * B\)</li>
+		        <li>\(AB \neq BA\)</li>
+		    </ul>
+		    
+		    <h2 id="">in terms of vector-matrix multiplication</h2>
+		    <p>For each row-label \(r\) of \(A\),
+		    $$\text{row } r \text{ of } AB = \underset{vector}{\underbrace{(\text{row } r \text{ of } A)}} * B$$
+		    $$\left[\begin{matrix}
+		        1 & 0 & 0 \\ \hline
+		        2 & 1 & 0 \\ \hline
+		        0 & 0 & 1
+		    \end{matrix}\right]\left[B\right] = 
+		    \left[\begin{matrix}
+		        [1,0,0] * B \\ \hline
+		        [2,1,0] * B \\ \hline
+		        [0,0,1] * B
+		    \end{matrix}\right]$$</p>
+		    
+		    <h2 id="">in terms of matrix-vector multiplication</h2>
+		    <p>For each column-label \(s\) of \(B\),
+		    $$\text{column } s \text{ of } AB = A * \underset{vector}{\underbrace{(\text{column } s \text{ of } B)}}$$
+		    $$[A] \left[\begin{array}{c|c|c}
+		        4 & 2 & 0 \\
+		        3 & 1 & -1
+		    \end{array}\right] = 
+		    \left[\begin{array}{c|c|c}
+		        A * \left[\begin{matrix}4 \\ 3\end{matrix}\right] &
+		        A * \left[\begin{matrix}2 \\ 1\end{matrix}\right] &
+		        A * \left[\begin{matrix}0 \\ -1\end{matrix}\right]
+		    \end{array}\right]$$</p>
+		    
+		    <h2 id="">dot product definition: exploiting sparsity!</h2>
+		    <p>Combine:</p>
+		    <ul>
+		        <li><i>matrix-vector</i> definition of <i>matrix-matrix</i> multiplication, and</li>
+		        <li><i>dot-product</i> definition of <i>matrix-vector</i> multiplication</li>
+		    </ul>
+		    <p>to get:</p>
+		    <p><em>Entry \(rc\)</em> of \(AB\) is the <em>dot-rpoduct</em> of <em>row \(r\)</em> of \(A\) with <em>column \(c\) of \(B\).</em>
+		    $$\overset{M}{\underset{i \times j}{\underbrace{\left[\begin{array}{c}
+\left[\begin{array}{ccc}
+3 & 2 & 1\end{array}\right]\\
+\left[\begin{array}{ccc}
+2 & 2 & 1\end{array}\right]\\
+\left[\begin{array}{ccc}
+3 & 2 & 0\end{array}\right]
+\end{array}\right]}}}\overset{U}{\underset{j \times k}{\underbrace{\left[\begin{array}{cc}
+\left[\begin{array}{c}
+5\\
+4\\
+2
+\end{array}\right] & \left[\begin{array}{c}
+6\\
+8\\
+7
+\end{array}\right]\end{array}\right]}}}=\overset{V}{\underset{i \times k}{\underbrace{\left[\begin{array}{c|c}
+V_{1} & V_{2}\end{array}\right]}}}$$
+            $$\begin{array}{ccccc}
+V_{1}[i] & = & V_{1}[i] & + & M[i,j]*U_{1}[j]\\
+V[i,k] & = & V[i,k] & + & M[i,j]*U[j,k]
+\end{array}$$
+		    </p>
+		    
+		</article>
+		
+		<article class="exercise">
+		    <h1>The matrix problems</h1>
+		    <ul>
+		        <li><a href="exercises/The_Matrix_problems.pdf" target="_blank">The_matrix_problems.pdf</a></li>
+		        <li><a href="exercises/The_Matrix_problems.py" target="_blank">The_matrix_problems.py</a></li>
+		        <li><a href="exercises" target="_blank">The_matrix_problems [dir]</a></li>
+		    </ul>
+		    
+		    
+		</article>
+		
+		
+		
+	</body>
+</html>	

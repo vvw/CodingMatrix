@@ -277,9 +277,11 @@ def submit(parts_string):
 
 
 def login_prompt():
+    #return input('username: ')
     return 'jorgeluisrmx@gmail.com'
 
 def password_prompt():
+    #return input('password: ')
     return 'ZejygxG4wc'
 
 def parts_prompt(problems):

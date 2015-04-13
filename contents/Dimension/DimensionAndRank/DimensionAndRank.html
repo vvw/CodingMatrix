@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Dimension and rank</title>
+        <link rel="shortcut icon" type="image/x-icon" href="../../../../../KonoMngr/style/icons/konoicn.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="../../../../../KonoMngr/style/konoguides.css" />
+        <script src="../../../../../KonoMngr/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+                TeX: { equationNumbers: { autoNumber: "AMS" } }
+            });</script>
+        <link rel="stylesheet" href="../../../../../KonoMngr/highlight/styles/googlecode.css">
+        <script src="../../../../../KonoMngr/highlight/highlight.pack.js" type="text/javascript"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </head>
+    <body class="kg-content">
+        <header>
+            <h1>Dimension and rank</h1>
+        </header>
+
+        <article class="subsection">
+            <h1>Dimension</h1>
+            
+            <article class="definition">
+
+                <p>The <em>dimension</em> of a vector space is the size of the basis for it.</p>
+                <p>The dimension of a vector space \(\mathcal{V}\) is written \(\text{dim} \mathcal{V}\)</p>
+            </article>
+        </article>
+        
+        <article class="subsection">
+            <h1>Rank</h1>
+            <article class="definition">
+                <h1>Rank</h1>
+                <p>The <em>rank</em> of a set \(S\) of vectors is the <em>dimmension</em> of \(\text{Span } S\). We write \(\text{rank } S\)</p>
+            </article>
+            
+            <article class="example">
+                <h1></h1>
+                <p>The vectors \([1,0,0],[0,2,0],[2,4,0]\) are linearly <em>dependent</em>. Therefore their <em>rank</em> is <em>less than three</em>.</p>
+                <p>First two of these vectors form a <em>basis for the span of all three</em>, so the <em>rank</em> is <em>two</em>.</p>
+            </article>
+            
+            <article class="example">
+                <h1></h1>
+                <p>The vector space \(\text{Span } \{[0,0,0]\}\) is spanned by an empty set of vectors. Therefore the <em>rank of \(\{[0,0,0]\}\)</em> is <em>zero</em></p>
+            </article>
+        </article>
+
+        <article class="subsection">
+            <h1>Estimating dimension</h1>
+            
+            <article class="lemma">
+                <h1>Subset-basis</h1>
+                <p>Every finite set \(T\) of vectors contains a subset \(S\) that is a basis for \(\text{Span } T\)</p>
+            </article>
+            
+            <pre><code>def subset_basis(T):
+    '''
+    Input:
+        - T: a set of Vecs
+    Output: 
+        - set S containing Vecs from T that is a basis for Span T.
+    '''
+    S = set()
+    for v in T:
+        if is_independent(S | {v}):
+            S = S | {v}
+    return S</code></pre>
+            <pre><code>def rank(L):
+    return len(subset_basis(L))</code></pre>
+            
+            <article class="lemma">
+                <h1>Superset-basis</h1>
+                <p>Let \(\mathcal{V}\) be a vector space. Let \(C\) be a linerly independet set of vectors belonging to \(\mathcal{V}\). Then \(\mathcal{V}\) has a basis \(S\) containing all vectors in \(C\).</p>
+            </article>
+            
+            <pre><code>def superset_basis(C, T):
+    '''
+    Input:
+        - C: linearly independent set of Vecs
+        - T: set of Vecs such that every Vec in C is in Span(T)
+    Output:
+        Linearly independent set S consisting of all Vecs in C and some in T
+        such that the span of S is the span of T (i.e. S is a basis for the
+        span of T).
+    '''
+    S = set()
+    for v in C:
+        if is_independent(S | {v}):
+            S = S | {v}
+    for v in T:
+        if is_independent(S | {v}):
+            S = S | {v}
+    return S</code></pre>
+            
+            <article class="proposition">
+                <h1></h1>
+                <p>A set \(T\) of vectors has rank \(\leq \left| T \right|\)</p>
+            </article>
+            
+            <article class="lemma">
+                <h1 id="dimensionlemma">Dimension</h1>
+                <p>If \(\mathcal{U}\) is a subspace of \(\mathcal{W}\) then:</p>
+                <ul>
+                    <li><em>D1:</em> \(\text{dim } \mathcal{U} \leq \text{dim } \mathcal{W}\), and</li>
+                    <li><em>D2:</em> if \(\text{dim } \mathcal{U} = \text{dim } \mathcal{W}\) the \(\mathcal{U} = \mathcal{W}\)</li>
+                </ul>
+                
+            </article>
+            
+            <article class="proof">
+                <h1></h1>
+                <p>Let \(\mathbf{u}_1, \ldots, \mathbf{u}_k\) be a basis for \(\mathcal{U}\). By superset_basis Lemma, there is a basis \(B\) for \(\mathcal{W}\) that contains \(\mathbf{u}_1, \ldots, \mathbf{u}_k\).</p>
+                <ul>
+                    <li>\(B = \{ \mathbf{u}_1, \ldots, \mathbf{u}_k, \mathbf{b}_1, \ldots, \mathbf{b}_r\} \)</li>
+                    <li>Thus \(k \leq \left| B \right|\), and</li>
+                    <li>if \(k = \left| B \right|\) then \(\{ \mathbf{u}_1, \ldots, \mathbf{u}_k \} = B\)</li>
+                </ul>
+                
+            </article>
+            
+            <article class="example">
+                <h1></h1>
+                <p>Suppose \(\mathcal{V} = \text{Span } \{[1,2], [2,1]\}\).</p>
+                <p>Clearly \(\mathcal{V}\) is a subspace of \(\mathbb{R}^2\). However, the set \(\{[1,2], [2,1]\}\) is linearly independent, so \(\text{dim } \mathcal{V} = 2\).</p>
+                <p>Since \(\text{dim } \mathbb{R}^2 = 2\), <em>D2</em> shows that \(\mathcal{V} = \mathbb{R}^2\).</p>
+            </article>
+            
+            <article class="example">
+                <h1></h1>
+                <p>\(S= \{ [-0.6,-2.1,-3.5,-2.2], [-1.3,-1.5,-0.9,-0.5], [4.9,-3.7,0.5,-0.3]\) \(, [2.6,-3.5,-1.2,-2.0], [-1.5,-2.5,-3.5,0.94] \}\)</p>
+                <p>Since every vector in \(S\) is a \(4\)-vector, \(\text{Span } S\) is a subspace of \(\mathbb{R}^4\).</p>
+                <p>Since \(\text{dim } \mathbb{R}^4 = 4\), <em>D1</em> shows \(\text{dim Span } S \leq 4\).</p>
+            </article>
+            
+            <article class="proposition">
+                <h1></h1>
+                <p>Any set of \(D\)-vectors has rank \(\leq \left|D\right|\)</p>
+            </article>
+        </article>
+
+        <article class="subsection">
+            <h1>Existence of a basis</h1>
+            <article class="theorem">
+                <h1></h1>
+                <p>For finite \(D\), every subspace of \(\mathbb{F}^D\) contais a basis</p>
+            </article>
+        </article>
+
+        <article class="subsection">
+            <h1>Row and column rank in matrices</h1>
+            
+            <article class="definition">
+                <h1></h1>
+                <p>For a matrix \(M\), the <em><i>row rank</i></em> of \(M\) is the <em>rank of its rows</em>, and the <em><i>column rank</i></em> of \(M\) is the <em>rank of its columns</em>.</p>
+                <p>Equivalently, the <em><i>row rank</i></em> of \(M\) is the <em>dimmension</em> of \(\text{Row } M\), and the <em><i>column rank</i></em> of \(M\) is the <em>dimension</em> of \(\text{Col } M\)</p>
+            </article>  
+            
+            <article class="lemma">
+                <h1>Row-col rank</h1>
+                <p>For any matrix \(A\), <em><i>row rank</i></em> of \(A \leq\) <em><i>column rank</i></em> of \(A\)</p>
+            </article>
+            
+            <article class="theorem">
+                <h1>Row-col rank</h1>
+                <p>For every matrux \(M\), <i>row rank</i> \(=\) <i>column rank</i></p>
+            </article>
+            
+            <article class="proof">
+                <h1></h1>
+                <ul>
+                    <li>Apply <i>Row-col Lemma</i> to \(M \Rightarrow\) row rank of \(M \leq\) column rank of \(M\)</li>
+                    <li>Apply <i>Row-col Lemma</i> to \(M^T \Rightarrow\) row rank of \(M^T \leq\) column rank of \(M^T \Rightarrow\) column rank of \(M \leq\) row rank of \(M\)</li>
+                    <li>Combine \(\Rightarrow\) row rank of \(M = \) column rank of \(M\)</li>
+                </ul>
+                
+            </article>
+            
+            <article class="example">
+                <h1></h1>
+                <p>Consider the matrix
+                $$\begin{bmatrix}
+                    1 & 0 & 0 \\
+                    0 & 2 & 0 \\
+                    2 & 4 & 0
+                \end{bmatrix}$$
+                whose rows are the vectors we saw befor. The set of these vectors has rank two, so the <em>row rank</em> of \(M\) is <em>two</em>.</p>
+                <p>The <em>column rank</em> of \(M\) is <em>two</em></p>
+            </article>
+            
+            <article class="example">
+                <h1></h1>
+                <p>Consider the matrix
+                $$\begin{bmatrix}
+                    1 & 0 & 0 & 5 \\
+                    0 & 2 & 0 & 7 \\
+                    0 & 0 & 3 & 9
+                \end{bmatrix}$$
+                Each of the rows has a nonzero where the others have zeroes, so three rows are linerly independet. Thus the <em>row rank</em> of \(M\) is <em>three</em>.</p>
+                <p>The first three columns are linearly independent, and the fourth can be writen as a liner combination of the first three, so the <em>column rank</em> is <em>three</em>.</p>
+            </article>
+        </article>
+    </body>
+</html>

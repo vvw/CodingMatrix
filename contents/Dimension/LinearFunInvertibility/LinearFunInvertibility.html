@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Linear function invertibility</title>
+        <link rel="shortcut icon" type="image/x-icon" href="../../../../../KonoMngr/style/icons/konoicn.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="../../../../../KonoMngr/style/konoguides.css" />
+        <script src="../../../../../KonoMngr/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+                TeX: { equationNumbers: { autoNumber: "AMS" } }
+            });</script>
+        <link rel="stylesheet" href="../../../../../KonoMngr/highlight/styles/googlecode.css">
+        <script src="../../../../../KonoMngr/highlight/highlight.pack.js" type="text/javascript"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </head>
+    <body class="kg-content">
+        <header>
+            <h1>Linear function invertibility</h1>
+        </header>
+
+        <article class="subsection">
+            <p><b>How to tell if a linear function \(f \, : \, \mathcal{V} \rightarrow \mathcal{W}\) is invertible?</b></p>
+            <ul>
+                <li><em>One-to-one?</em> \(f\) is one-to-one if its <span class="tooltip" title="\(\text{Ker } f = \{v \, : \, f(v)=0\}\)">kernel</span> is trivial. <i>Equivalent:</i> if its kernel has dimension zero</li>
+                <li><em>Onto?</em> \(f\) is onto if its image equals its co-domain</li>
+            </ul>
+            
+            <article class="lemma">
+                <h1></h1>
+                <p>The image of \(f\) is a subspace of its co-domain \(\mathcal{W}\)</p>
+            </article>
+            
+            <p><b>How can we tell if the image of \(f\) equals \(\mathcal{W}\)?</b></p>
+            <p>By using them dimension and recalling <a href="../DimensionAndRank/DimensionAndRank.html#dimensionlemma" target="_self">Dimension Lema</a>, i.e., if \(\text{dim Im } f = \text{dim } \mathcal{W}\), then \(\text{Im } f = \mathcal{W}\), therefore \(f\) is onto. At this point we can conclude:
+            $$\boxed{f \text{ is one-to-one if dim Ker } f = 0 \text{ and dim Im } f = \text{ dim } \mathcal{W}}$$</p>
+            
+            <p><b>How does this relate to dimension of the domain?</b></p>
+            
+            <article class="conjecture">
+                <h1></h1>
+                <p>For \(f \, : \, \mathcal{V} \rightarrow \mathcal{W}\) to be invertible, need \(\text{dim } \mathcal{V} = \text{dim } \mathcal{W}\)</p>
+            </article>
+            
+            <p>This corresponds to the intuition that the vectors in the domain can be made to correspond with the vectors in the co-domain.</p>
+            
+            
+        </article>
+
+    </body>
+</html>

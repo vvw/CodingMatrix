@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Basis</title>
+		<link rel="shortcut icon" type="image/x-icon" href="../../../../../KonoMngr/style/icons/konoicn.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="../../../../../KonoMngr/style/konoguides.css" />
+		<script src="../../../../../KonoMngr/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+  				TeX: { equationNumbers: { autoNumber: "AMS" } }
+			});</script>
+		<link rel="stylesheet" href="../../../../../KonoMngr/highlight/styles/googlecode.css">
+		<script src="../../../../../KonoMngr/highlight/highlight.pack.js" type="text/javascript"></script>
+		<script>hljs.initHighlightingOnLoad();</script>		
+	</head>
+	
+	<body class="kg-content">
+		<header>
+			<h1>Basis</h1>
+		</header>
+		
+		<article class="subsection">
+			<h1>Basis</h1>
+			
+			<article class="definition">
+			    <h1>Basis</h1>
+			    <p>Let \(\mathcal{V}\) be a vector space. A <em><i>basis</i></em> for \(\mathcal{V}\) is a linearly independent set of generators for \(\mathcal{V}\).</p>
+			</article>
+			
+			<article class="property">
+			    <h1></h1>
+			    <p>Thus a set \(S\) of vectors of \(\mathcal{V}\) is a <i>basis</i> for \(\mathcal{V}\) is \(S\) satisfies two properties:</p>
+			    <ul>
+			        <li><em>B1 (spanning)</em>: \(\text{Span } S = \mathcal{V}\), and</li>
+			        <li><em>B2 (independent)</em>: \(S\) is linearly independent</li>
+			    </ul>
+			</article>
+			
+			<article class="example">
+			    <h1></h1>
+			    <p>Are the vectors \([1,1,1], \, [1,1,0], \, [0,1,1]\) a basis for \(\mathbb{R}^3\)?</p>
+			    <ul>
+			        <li><em>Spanning</em>: can write standard generators in terms of these vectors:
+			        $$\begin{array}{lll}
+			            [1,0,0] & = & [1,1,1] - [0,1,1] \\{}
+			            [0,1,0] & = & [1,1,0] + [0,1,1] - [1,1,1] \\{}
+			            [0,0,1] & = & [1,1,1] - [1,1,0]
+			        \end{array}$$
+			        Since \(\mathbf{e}_1\), \(\mathbf{e}_2\), \(\mathbf{e}_3\) can be written in terms of these new vectors. Thus \(\mathbb{R}^3\) equals span of new vectors.</li>
+			        <li><em>Linearly independent</em>: write zero vector as linear combination:
+			        $$\mathbf{0} = x[1,1,1] + y[1,1,0] + z[0,1,1]=[x+y, x+y+z, x+z]$$
+			        Looking at each entry, we get \(x=0, y=0, z=0\). Thus the linear combination is trivial.</li>
+			    </ul>
+			    
+			</article>
+		</article>
+		
+		<article class="subsection">
+		    <h1>Unique representation</h1>
+		    <p>Recall idea of coordinate system for a vector space \(\mathcal{V}\):</p>
+		    <ul>
+		        <li>Generators \(\mathbf{a}_1, \ldots, \mathbf{a}_n\) of \(\mathcal{V}\)</li>
+		        <li>Every vector \(\mathbf{v} \in \mathcal{V}\) can be written as a linear combination:
+		        $$\mathbf{v} = \alpha_1 \mathbf{a}_1 + \cdots + \alpha_n \mathbf{a}_n$$</li>
+		        <li>We represent vector \(\mathbf{v}\) by its coordinate representation \([\alpha_1, \ldots, \alpha_n]\)</li>
+		    </ul>
+		    
+		    <dl>
+		        <dt>Question:</dt>
+		            <dd><p>How can we ensure that each point has only one coordinate representation?</p></dd>
+		        <dt>Answer:</dt>
+		            <dd><p>The generators \(\mathbf{a}_1, \ldots, \mathbf{a}_n\) should form a basis</p></dd>
+		    </dl>
+		    
+		    <article class="lemma">
+		        <h1>Unique-representation</h1>
+		        <p>Ler \(\mathbf{a}_1, \ldots, \mathbf{a}_n\) be a basis for \(\mathcal{V}\). For any vector \(\mathbf{v} \in \mathcal{V}\), there is exactly one representation of \(\mathbf{v}\) in terms of the basis vectors.</p>
+		    </article>
+		    
+		</article>
+		
+		<article class="subsection">
+		    <h1>Change of basis</h1>
+		    <p>Suppose we have a basis \(\mathbf{a}_1, \ldots, \mathbf{a}_n\) for some vector space \(\mathcal{V}\). A vector \(\mathbf{v} \in \mathcal{V}\) has the coordinate representation \(\mathbf{u}\) in that basis such that:
+		    $$\left[\begin{array}{c|c|c}
+		        \mathbf{a}_1 & \cdots & \mathbf{a}_n
+		    \end{array}\right] [\mathbf{u}] = [\mathbf{v}]$$
+		    </p>
+		    <p>By unique-representation lemma, \(\mathbf{u}\) is the only solution to the equation:
+		    $$\left[\begin{array}{c|c|c}
+		        \mathbf{a}_1 & \cdots & \mathbf{a}_n
+		    \end{array}\right] [\mathbf{x}] = [\mathbf{v}]$$
+		    so we can obtain \(\mathbf{u}\) by using a matrix-vector equation solver.</p>
+		    <p>The mentioned equation can be represented by the function \(f: \mathbb{F}^n \rightarrow \mathcal{V}\) define by:
+		    $$f(\mathbf{x}) = \left[\begin{array}{c|c|c}
+		        \mathbf{a}_1 & \cdots & \mathbf{a}_n
+		    \end{array}\right] [\mathbf{x}]$$
+		    that based on the definitions is <em>onto</em> and <em>one-to-one</em>. Therefore <em>\(f\) is invertible</em>.</p>
+		    
+		    <article class="proposition">
+		        <h1>Change of basis</h1>
+		        <p>If \(\mathbf{a}_1, \ldots, \mathbf{a}_n\) and \(\mathbf{c}_1, \ldots, \mathbf{c}_k\) are bases for \(\mathbb{F}^m\) then multiplication by matrix
+		        $$B = \left[\begin{array}{c|c|c}
+		        \mathbf{a}_1 & \cdots & \mathbf{a}_n
+		    \end{array}\right]^{-1} \left[\begin{array}{c|c|c}
+		        \mathbf{c}_1 & \cdots & \mathbf{c}_k
+		    \end{array}\right]$$
+		    maps</p>
+		    <ul>
+		        <li>from the representation of a vector with respect to \(\mathbf{c}_1, \ldots, \mathbf{c}_k\)</li>
+		        <li>to the representation of a vector with respect to \(\mathbf{a}_1, \ldots, \mathbf{a}_n\)</li>
+		    </ul>
+		    
+		    </article>
+		</article>
+		
+	</body>
+</html>	

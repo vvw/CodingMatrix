@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Finding a set of generators</title>
+		<link rel="shortcut icon" type="image/x-icon" href="../../../../../KonoMngr/style/icons/konoicn.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="../../../../../KonoMngr/style/konoguides.css" />
+		<script src="../../../../../KonoMngr/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+  				TeX: { equationNumbers: { autoNumber: "AMS" } }
+			});</script>
+		<link rel="stylesheet" href="../../../../../KonoMngr/highlight/styles/googlecode.css">
+		<script src="../../../../../KonoMngr/highlight/highlight.pack.js" type="text/javascript"></script>
+		<script>hljs.initHighlightingOnLoad();</script>		
+	</head>
+	
+	<body class="kg-content">
+		<header>
+			<h1>Finding a set of generators</h1>
+		</header>
+		
+		<article class="subsection">
+			<h1>Finding a set of generators</h1>
+            <dl>
+                <dt>Question:</dt>
+                    <dd><p>For a given vector space \(\mathcal{V}\), what is the minimum nomber of vectors \(S\) whose \(\text{Span } \{S\} = \mathcal{V}\)?</p></dd>
+            </dl>
+            
+            <ul>
+                <li>Two natural approaches come to mind: <em>Grow algorithm</em> and <em>Shrink algorithm</em></li>
+            </ul>
+                   
+		</article>
+		
+		<article class="subsection">
+			<h1>The superfluous-Vector lemma</h1>
+			<p>Algorithms to find a set of generators are based on determine if a vector \(\mathbf{v}\) is in the span of a certain set of vectors \(S\).</p>
+			<p>In other words, those algorithms need to determine if a vector is superfluous in spanning a vector space \(\mathcal{V}\). So we need a criterion for superfluity.</p>
+			
+			<article class="lemma">
+			    <h1>Superflous-Vector</h1>
+			    <p>For any set \(S\) and any vector \(\mathbf{v} \in S\), if \(\mathbf{v}\) can be written as a linear combination of the other vector in \(S\) then
+			    $$\text{Span } (S-\{\mathbf{v}\}) = \text{Span } S$$</p>
+			</article>
+		</article>
+		
+		<article class="subsection">
+		    <h1>Linear dependence</h1>
+		    
+		    <article class="definition">
+		        <h1>Linear dependece</h1>
+		        <p>Vectors \(\mathbf{v}_1, \ldots, \mathbf{v}_n\) are <i><em>linerly depedent</em></i> if the zero vector can be written as a <em>nontrivial</em> linear combination of the vectors:
+		        $$\mathbf{0} = \alpha_1 \mathbf{v}_1 + \cdots + \alpha_n \mathbf{v}_n$$
+		        in this case, we refer to the linear combination as a <em>linear dependency</em> in \(\mathbf{v}_1, \ldots, \mathbf{v}_n\)</p>
+		    </article>
+		    
+		    <article class="definition">
+		        <h1>Linear independence</h1>
+		        <p>Given a set of vectors \(\mathbf{v}_1, \ldots, \mathbf{v}_n\), if the <em>only linear combination</em> that equals <em>zero</em> vector is the <em>trivial</em> linear combination, i.e. \([\alpha_1, \ldots, \alpha_n] = \mathbf{0}\), we say \(\mathbf{v}_1, \ldots, \mathbf{v}_n\) are <em>linerly independent</em></p>
+		    </article>  
+		    
+		    <article class="lemma">
+		        <h1>Linear-dependece</h1>
+		        <p>Let \(\mathbf{v}_1, \ldots, \mathbf{v}_n\) be vectors. A vector \(\mathbf{v}_i\) is in the span of the other vectors iff the zero vector can be written as a linear combination of \(\mathbf{v}_1, \ldots, \mathbf{v}_n\) in which the <em>coefficient</em> of \(\mathbf{v}_i\) is <em>nonzero</em>.</p>
+		    </article>
+
+		</article> 
+		
+		<article class="subsection">
+		    <h1>Minimum spanning forest</h1>
+		    <ul>
+		        <li>Lets <em>illustrate</em> some of the <em>concepts</em> of the two algorithms <em>with</em> a <em>graph problem</em></li>
+		        <li>We need some definitions</li>
+		    </ul>
+		    
+		    <figure>
+		        <img src="media/ExampleGraph.png" alt="alt-text" width="650px" height="px">
+		        <figcaption>An example graph</figcaption>
+		    </figure>
+		    
+		    <article class="definition">
+		        <h1>Graph path</h1>
+		        <p>A sequence of edges \(\left[ \{x_1, x_2\}, \{x_2, x_3\}, \ldots, \{x_{k-1}, x_k\} \right]\) is called an <em>\(x_1\)-to-\(x_k\) path</em>.</p>
+		    </article>
+		    
+		    <article class="definition">
+		        <h1>Spanning</h1>
+		        <p>A set \(S\) of edges is <em><i>spanning</i></em> for a graph \(G\) if, for every edge \(\{x,y\} \in G\), there exist and \(x\)-\(y\) path consisting of edges in \(S\).</p>
+		    </article>
+		    
+		    <article class="definition">
+		        <h1>Forest</h1>
+		        <p>A set of edges of \(G\) is a <em><i>forest</i></em> if the set includes <em>no cycles</em>.</p>
+		    </article> 
+		    
+		    <article class="definition">
+		        <h1>Minimum spanning forest problme</h1>
+		        <ul>
+		            <li><b>input</b>: a <em>graph \(G\)</em>, and an assigment of real-number <em><i>weights</i></em> to the edges of \(G\)</li>
+		            <li><b>output</b>: a <em>minimum-wight</em> set \(S\) of edges that is <em>spanning</em> and a <em>forest</em></li>
+		        </ul>
+		        
+		    </article>
+		    
+		    <ul>
+		        <li>Two natural approaches come to mind:</li>
+		    </ul>
+		        <table>
+		            <tbody>
+		                <tr>
+		                    <td><a href="" target="_self">Grow algorithm</a></td>
+		                    <td><pre>def Grow(G)
+    S = {}
+    consider the edges in <em>increasing</em> order
+    for each edge e:
+        if e's endpoints are not yet conected
+            add e to S<code></code></pre>
+		                    <figure>
+		                        <img src="media/GrowAlghm.png" alt="alt-text" width="500px" height="px">
+		                        <figcaption></figcaption>
+		                    </figure>
+		                    </td>
+		                </tr>
+		                <tr>
+		                    <td><a href="" target="_self">Shrink algorithm</a></td>
+		                    <td><pre>def Shrink(G)
+    S = {all edges}
+    consider the edges in <em>decreasing</em> weight order
+    for each edge e:
+        if every pair of nodes are connected via S - {e}
+            remove e from S<code></code></pre>
+		                    <figure>
+		                        <img src="media/ShrinkAlghm.png" alt="alt-text" width="500px" height="px">
+		                        <figcaption></figcaption>
+		                    </figure>
+		                    </td>
+		                </tr>
+		            </tbody>
+		            </table>
+
+		    
+		     <h2 id="">formulating minimum spanning forest in linear algebra</h2>
+		     <ul>
+		         <li>Let \(D\) the set of all nodes</li>
+		         <li>Represent a subset of \(D\) by a <em>GF(2)</em> vector over \(D\)</li>
+		         <li><em>Edges</em> are subsets of \(D\): \(x\)-\(y\) edge is represent as GF(2) vector with 1's in entries \(x\) and \(y\)</li>
+		         <li><em>\(x\)-to-\(y\) path</em>: vector with 1's in entries \(x\) and \(y\) corresponding to the sum of edges.</li>
+		     </ul>
+		     
+		     <dl>
+		         <dt>Grow algorithm</dt>
+		             <dd>
+		             <pre><code>def Grow(V)
+    S = {}
+    repeat while possible
+        find a vector v in V not in Span S,
+            and put it in S</code></pre>
+		             <ul>
+		                 <li>Consider edges \(e\) of \(G\) correspond to considering vectors \(\mathbf{v} \in \mathcal{V}\)</li>
+		                 <li>Testing if \(e\)'s endpoint are not connected corresponds to testing if \(\mathbf{v}\) is not in \(\text{Span } \{S\}\)</li>
+		                 <li>The <i>Grow algorithm</i> for MSF is a specialization of the <i>Grow algorithm</i> for vectors.</li>
+		             </ul>
+		             
+		             </dd>
+		     </dl>
+		     
+		     <article class="note">If they successfully finish, the <em>Grow algorithm</em> and the <em>Shrink algorithm</em> each find a set of vectors linerly independent, spanning the vector space \(\mathcal{V}\).</article>
+		     
+		    
+		</article>
+		
+		
+	</body>
+</html>	

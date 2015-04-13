@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Adding vectors spaces</title>
+        <link rel="shortcut icon" type="image/x-icon" href="../../../../../KonoMngr/style/icons/konoicn.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="../../../../../KonoMngr/style/konoguides.css" />
+        <script src="../../../../../KonoMngr/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+                TeX: { equationNumbers: { autoNumber: "AMS" } }
+            });</script>
+        <link rel="stylesheet" href="../../../../../KonoMngr/highlight/styles/googlecode.css">
+        <script src="../../../../../KonoMngr/highlight/highlight.pack.js" type="text/javascript"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </head>
+    <body class="kg-content">
+        <header>
+            <h1>Adding vectors spaces</h1>
+        </header>
+
+        <article class="subsection">
+            <h1>Direct sum</h1>
+            <article class="definition">
+                <h1></h1>
+                <p>Let \(\mathcal{U}\) and \(\mathcal{V}\) be two vector spaces consisting of \(D\)-vectors over a field \(\mathbb{F}\). If \(\mathcal{U}\) and \(\mathcal{V}\) <em>share only the zero vector</em> then we define the <em><i>direct sum</i></em> of \(\mathcal{U}\) and \(\mathcal{V}\) to be the set
+                $$\{\mathbf{u} + \mathbf{v} \, : \, \mathbf{u} \in \mathcal{U}, \, \mathbf{v} \in \mathcal{V}\}$$
+                written \(\mathcal{U} \oplus \mathcal{V}\).</p>
+                
+            </article>
+            
+            <p>That is, \(\mathcal{U} \oplus \mathcal{V}\) is the set of all sums of a vector in \(\mathcal{U}\) and a vector in \(\mathcal{V}\)</p>
+            <pre><code>[u+v for u in U for v in V]</code></pre>
+            
+            <article class="example">
+                <h1>Vectors over \(GF(2)\)</h1>
+                <p>Let \(\mathcal{U} = \text{Span } \{1000,0100\}\) and let \(\mathcal{V}= \text{Span } \{0010\}\).</p>
+                <ul>
+                    <li>Every nonzero vector in \(\mathcal{U}\) has a one in the first or second position (or both) and nowhere else.</li>
+                    <li>Every nomzero vector in \(\mathcal{V}\) has a one in the third position and nowhere else.</li>
+                </ul>
+                <p>Therefore the <em>only vector in both</em> \(\mathcal{U}\) and \(\mathcal{V}\) is the <em>zero vector</em>. Therefore <em>\(\mathcal{U} \oplus \mathcal{V}\) is defined</em></p>
+                <p>\(\mathcal{U} \oplus \mathcal{V} = \{0000+0000, 1000+0000, 0100+0000, 1100+0000,\) \(0000+0010, 1000+0010, 0100+0010, 1100+0010\}\)</p>
+                <p>which is equal to \(\{0000,1000,0100,1100,0010,1010,0110,1110\}\)</p>
+                
+            </article>
+            
+            <article class="example">
+                <h1>direct sum not defined</h1>
+                <p>Let \(\mathcal{U} = \text{Span } \{ [1,2,1,2], [3,0,0,4]\}\) and let \(\mathcal{V}\) be the null space of
+                $$\begin{bmatrix}
+                    0 & 0.5 & -1 & 0 \\
+                    1 & 0 & 0 & -1
+                \end{bmatrix}$$</p>
+                <ul>
+                    <li>The vector \([2,-2,-1,2]\) is in \(\mathcal{U}\) because it is \([3,0,0,4]-[1,2,1,2]\)</li>
+                    <li>It is also in \(\mathcal{V}\) because:
+                    $$\begin{bmatrix}
+                    0 & 0.5 & -1 & 0 \\
+                    1 & 0 & 0 & -1
+                \end{bmatrix} \begin{bmatrix}
+                    2 \\ -2 \\ -1 \\ 2
+                \end{bmatrix} = \begin{bmatrix}
+                    0 \\ 0
+                \end{bmatrix}$$
+                    </li>
+                </ul>
+                <p>Therefore we <em>cannot form \(\mathcal{U} \oplus \mathcal{V}\)</em>.</p>
+            </article>
+            
+            <article class="example">
+                <h1>Vectors over \(\mathbb{R}\)</h1>
+                <ul>
+                    <li>Let \(\mathcal{U} = \text{Span } \{[4,-1,1]\}\).</li>
+                    <li>Let \(\mathcal{V} = \text{Span } \{[0,1,1]\}\).</li>
+                </ul>
+                <figure>
+                    <img src="media/TwoLines.png" alt="alt-text" width="px" height="px">
+                    <figcaption></figcaption>
+                </figure>
+                <p>The only intersection is at the origin, so \(\mathcal{U} \oplus \mathcal{V}\) is defined.</p>
+                <ul>
+                    <li>\(\mathcal{U} \oplus \mathcal{V}\) is the set of vectors \(\mathbf{u} + \mathbf{v}\) where \(\mathbf{u} \in \mathcal{U}\) and \(\mathbf{v} \in \mathcal{V}\).</li>
+                    <li>This is just \(\text{Span } \{[4,-1,1], [0,1,1]\}\)</li>
+                    <li><em>Plane</em> containing two lines</li>
+                </ul>
+                <figure>
+                    <img src="media/PlaneContainigTwoLines.png" alt="alt-text" width="px" height="px">
+                    <figcaption></figcaption>
+                </figure>
+                
+                
+            </article>
+        </article>
+        
+        <article class="subsection">
+            <h1>Properties of direct sum</h1>
+            
+            <article class="lemma">
+                <h1></h1>
+                <p>\(\mathcal{U} \oplus \mathcal{V}\) is a vector space</p>
+            </article>
+            
+            <article class="lemma">
+                <h1>Dirtect sum generators</h1>
+                <p>The union of a <i>set of generators</i> of \(\mathcal{U}\) and a <i>set of generators</i> of \(\mathcal{V}\) is a <i>set of generators</i> for \(\mathcal{U} \oplus \mathcal{V}\)</p>
+            </article>
+            
+            <article class="proof">
+                <h1></h1>
+                <p>Suppose \(\mathcal{U} = \text{Span } \{\mathbf{u}_1, \ldots, \mathbf{u}_m\}\) and \(\mathcal{V} = \text{Span } \{\mathbf{v}_1, \ldots, \mathbf{v}_n\}\). Then:</p>
+                <ul>
+                    <li>every vector in \(\mathcal{U}\) can be written as \(\alpha_1 \mathbf{u}_1 + \cdots + \alpha_m \mathbf{u}_m\), and</li>
+                    <li>every vector in \(\mathcal{V}\) can be written as \(\beta_1 \mathbf{v}_1 + \cdots + \beta_m \mathbf{v}_n\)</li>
+                </ul>
+                <p>so every vector in \(\mathcal{U} \oplus \mathcal{V}\) can be written as:
+                $$\alpha_1 \mathbf{u}_1 + \cdots + \alpha_m \mathbf{u}_m + \beta_1 \mathbf{v}_1 + \cdots + \beta_m \mathbf{v}_n$$
+                and that show that those vectors expand the direct sum \(\mathcal{U} \oplus \mathcal{V}\)</p>
+            </article>
+            
+            <article class="lemma">
+                <h1>Direct sum basis</h1>
+                <p>Union of a basis of \(\mathcal{U}\) and a basis of \(\mathcal{V}\) is a basis of \(\mathcal{U} \oplus \mathcal{V}\)</p>
+            </article>  
+            
+            <article class="proof">
+                <h1></h1>
+                <p>Clearly</p>
+                <ul>
+                    <li>a basis of \(\mathcal{U}\) is a set of generators for \(\mathcal{U}\), and</li>
+                    <li>a basis of \(\mathcal{V}\) is a set of generators for \(\mathcal{V}\)</li>
+                </ul>
+                <p>Therefore the previous shows that</p>
+                <ul>
+                    <li>the union of a basis for \(\mathcal{U}\) and a basis for \(\mathcal{V}\) is a generating set for \(\mathcal{U} \oplus \mathcal{V}\).</li>
+                </ul>
+                <p>We just need to show that the union is linearly independent.</p>
+                
+                <p><b>by cont'd:</b> let \(\{\mathbf{u}_1, \ldots, \mathbf{u}_m \}\) be a basis fot \(\mathcal{U}\), and \(\{\mathbf{v}_1, \ldots \mathbf{v}_n\}\) be a basis for \(\mathcal{V}\). We need to show that \(\{\mathbf{u}_1, \ldots, \mathbf{u}_m, \mathbf{v}_1, \ldots \mathbf{v}_n\}\) is linearly independent.</p>
+                <p>Suppose
+                $$\mathbf{0} = \alpha_1 \mathbf{u}_1 + \cdots + \alpha_m \mathbf{u}_m + \beta_1 \mathbf{v}_1 + \cdots + \beta_n \mathbf{v}_n$$
+                Then
+                $$\underset{\in\mathcal{U}}{\underbrace{\alpha_{1}\mathbf{u}_{1}+\cdots+\alpha_{m}\mathbf{u}_{m}}}=\underset{\in\mathcal{V}}{\underbrace{\left(-\beta_{1}\right)\mathbf{v}_{1}+\cdots+\left(-\beta_{n}\right)\mathbf{v}_{n}}}$$</p>
+                <p>Left-hand side is a vector in \(\mathcal{U}\), and right-hand side is a vector in \(\mathcal{V}\). By definition of \(\mathcal{U} \oplus \mathcal{V}\), the only vector in both \(\mathcal{U}\) and \(\mathcal{V}\) is the zero vector.</p>
+                <p>This shows:
+                $$\mathbf{0} = \alpha_1 \mathbf{u}_1 + \cdots + \alpha_m \mathbf{u}_m$$
+                and
+                $$\mathbf{0} = \left(-\beta_{1}\right)\mathbf{v}_{1}+\cdots+\left(-\beta_{n}\right)\mathbf{v}_{n}$$
+                By linear independence, the linear combination <em>must be trivial</em>. And that shows that the set \(\{\mathbf{u}_1, \ldots, \mathbf{u}_m, \mathbf{v}_1, \ldots \mathbf{v}_n\}\) is linearly independent</p>
+            </article>
+            
+            <article class="corolary">
+                <h1>Direct sum dimension</h1>
+                <p>\(\text{dim } \mathcal{U} + \text{dim } \mathcal{V} = \text{dim } \mathcal{U} \oplus \mathcal{V}\)</p>
+            </article>
+            
+            <article class="proof">
+                <h1></h1>
+                <p>A basis for \(\mathcal{U}\) together with a basis for \(\mathcal{V}\) forms a basis for \(\mathcal{U} \oplus \mathcal{V} \)</p>
+            </article>
+        </article>
+        
+        <article class="subsection">
+            <h1>Complementary subspace</h1>
+            
+            <article class="definition">
+                <h1></h1>
+                <p>If \(\mathcal{U} \oplus \mathcal{V} = \mathcal{W}\), we say \(\mathcal{U}\) and \(\mathcal{V}\) are <em><i>complementary subspaces</i></em> of \(\mathcal{W}\)</p>
+            </article>
+            
+            <article class="example">
+                <h1></h1>
+                <p>Suppose \(\mathcal{U}\) is a plane in \(\mathbb{R}^3\). Then any line throught the origin that dos not line in \(\mathcal{U}\) is complementary subspace with respect to \(\mathbb{R}^3\).</p>
+                <figure>
+                    <img src="media/ComplementarySubspace.png" alt="alt-text" width="px" height="300px">
+                    <figcaption></figcaption>
+                </figure>
+                <p>Example ilustrates that, for a given subspace \(\mathcal{U}\) of \(\mathcal{W}\), there can be many different subspaces \(\mathcal{V}\) such that \(\mathcal{U}\) and \(\mathcal{V}\) are complementary.</p>
+            </article>
+            
+            <article class="proposition">
+                <h1></h1>
+                <p>For any finite-dimensional vector space \(\mathcal{W}\) and any subspace \(\mathcal{U}\), there is a subspace \(\mathcal{V}\) such that \(\mathcal{U}\) and \(\mathcal{V}\) are complementary.</p>
+            </article>
+            
+            <article class="proof">
+                <h1></h1>
+                <p>Let \(\mathbf{u}_1, \ldots, \mathbf{u}_k\) be a basis for \(\mathcal{U}\). By <em>Superset-Basis Lemma</em>, there is a <em>basis</em> for \(\mathcal{W}\) that includes \(\mathbf{u}_1, \ldots, \mathbf{u}_k\):
+                $$B = \{\mathbf{u}_1, \ldots, \mathbf{u}_k, \mathbf{v}_1, \ldots, \mathbf{v}_r\}$$
+                Let \(\mathcal{V} = \text{Span } \{\mathbf{v}_1, \ldots, \mathbf{v}_r\}\).</p>
+                <p>Any vector in \(\mathcal{W}\) can be written in terms of its basis:
+                $$\mathbf{w} = \underset{\in\mathcal{U}}{\underbrace{\alpha_{1}\mathbf{u}_{1}+\cdots+\alpha_{k}\mathbf{u}_{k}}} + \underset{\in\mathcal{V}}{\underbrace{\beta_{1} \mathbf{v}_{1}+\cdots+\beta_{r} \mathbf{v}_{r}}}$$
+                If some vector \(\mathbf{v}\) is in \(\text{Span } \{\mathbf{u}_1, \ldots, \mathbf{u}_k\}\) and in \(\text{Span } \{\mathbf{v}_1, \ldots, \mathbf{v}_r\}\) then \(\mathbf{v} = \alpha_{1}\mathbf{u}_{1}+\cdots+\alpha_{k}\mathbf{u}_{k}\) and \(\mathbf{v} = \beta_{1} \mathbf{v}_{1}+\cdots+\beta_{r} \mathbf{v}_{r}\), so
+                $$\alpha_{1}\mathbf{u}_{1}+\cdots+\alpha_{k}\mathbf{u}_{k} = \beta_{1} \mathbf{v}_{1}+\cdots+\beta_{r} \mathbf{v}_{r}$$
+                $$\mathbf{0} = \alpha_{1}\mathbf{u}_{1}+\cdots+\alpha_{k}\mathbf{u}_{k} - \beta_{1} \mathbf{v}_{1}-\cdots-\beta_{r} \mathbf{v}_{r}$$
+                But because \(\{\mathbf{u}_1, \ldots, \mathbf{u}_k, \mathbf{v}_1, \ldots, \mathbf{v}_r\}\) is a basis, they are linealy independent, so combination <em>must be trivial</em>, i.e., \(\alpha_1 = \cdots = \alpha_k = \beta_1 = \cdots = \beta_r = 0\), so \(\mathbf{v} = \mathbf{0}\), the only shared vector by \(\mathcal{U}\) and \(\mathcal{V}\); therefore the direct sum \(\mathcal{U} \oplus \mathcal{V} = \mathcal{W}\) is defined, and \(\mathcal{U}\) and \(\mathcal{V}\) are complementary subspaces od \(\mathcal{W}\).</p>
+            </article>
+        </article>
+        
+        <article class="subsection">
+            <h1>Direct sum uique representation</h1>
+            <pre><code>def direct_sum_decompose(U_basis, V_basis, w):
+    '''
+    Input:
+        - U_basis: a list of Vecs forming a basis for a vector space U
+        - V_basis: a list of Vecs forming a basis for a vector space V
+        - w: a Vec in the direct sum of U and V
+    Output:
+        - a pair (u, v) such that u + v = w, u is in U, v is in V
+    '''
+    union_basis = U_basis.copy()
+    union_basis.extend(V_basis)
+    union_matrix = coldict2mat(union_basis)
+    U_matrix = coldict2mat(U_basis)
+    V_matrix = coldict2mat(V_basis)
+    # calculate the w representation in u and v terms
+    w_rep = solve(union_matrix, w)
+    # extracting the u an v representation on U_basis and V_basis respectively
+    u_rep = Vec(U_matrix.D[1], {idx:w_rep[idx] for idx in range(len(U_basis))})
+    v_rep = Vec(V_matrix.D[1], {idx:w_rep[idx + len(U_basis)] for idx in range(len(V_basis))})
+    # calculate u and v vectors
+    u = U_matrix * u_rep
+    v = V_matrix * v_rep
+    return (u, v)</code></pre>
+        </article>
+
+    </body>
+</html>

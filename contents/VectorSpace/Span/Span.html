@@ -25,7 +25,7 @@
 			
 			<article class="definition">
 			    <h1>Span</h1>
-			    <p>The set of all linera combinations of some vectors \(\mathbf{v}_1, \mathbf{v}_2, \ldots , \mathbf{v}_n\) is called the <em>span</em> of these vectors.</p>
+			    <p>The set of all linear combinations of some vectors \(\mathbf{v}_1, \mathbf{v}_2, \ldots , \mathbf{v}_n\) is called the <em>span</em> of these vectors.</p>
 			    <p>Written \(\text{Span } \left\{ \mathbf{v}_1, \ldots , \mathbf{v}_n \right\}\)</p>
 			</article>  
 			
@@ -56,15 +56,34 @@
                     <li>\(\{ \mathbf{v}_1, \ldots , \mathbf{v}_n \}\) is a <em>generating</em> set for \(\mathcal{V}\)</li>
                     
                     <li>vectors \(\mathbf{v}_1, \ldots , \mathbf{v}_n\) are refered as <em>generators</em> for \(\mathcal{V}\)</li>
+                    <li>\(\mathcal{V}\) could br for example \(\mathbb{R}^3\)</li>
                     
                 </ul>
                 
             </article>
             
             <article class="observation">
-                <h1></h1>
-                <p></p>
+                <h1>Being a generator</h1>
+                <p>For a set of vectors to be called <em>generator</em> of \(\mathcal{V}\), it has to show two properties:</p>
+                <ol>
+                    <li>every linear combination of them is a vector of \(\mathcal{V}\)</li>
+                    <li>every vector of \(\mathcal{V}\) is a linear combination of them</li>
+                </ol>
+                
             </article> 
+            
+            <article class="definition">
+                <h1>Standard generators for \(\mathbb{R}^3\)</h1>
+                <p>The so called standar generators \(\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3\) for \(\mathbb{R}^3\) are:
+                $$\begin{array}{lll}
+                \mathbf{e}_1 & = & [1,0,0] \\
+                \mathbf{e}_2 & = & [0,1,0] \\
+                \mathbf{e}_3 & = & [0,0,1]
+                \end{array}$$
+                with a linar combination of them, you can generate eny vector on \(\mathbb{R}^3\):
+                $$[x,y,z] = x[1,0,0] + y [0,1,0] + z [0,0,1]$$
+                </p>
+            </article>
 		</article>  
 		
 	</body>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Matrix properties</title>
+		<link rel="shortcut icon" type="image/x-icon" href="../../../../../KonoMngr/style/icons/konoicn.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="../../../../../KonoMngr/style/konoguides.css" />
+		<script src="../../../../../KonoMngr/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+  				TeX: { equationNumbers: { autoNumber: "AMS" } }
+			});</script>
+		<link rel="stylesheet" href="../../../../../KonoMngr/highlight/styles/googlecode.css">
+		<script src="../../../../../KonoMngr/highlight/highlight.pack.js" type="text/javascript"></script>
+		<script>hljs.initHighlightingOnLoad();</script>		
+	</head>
+	
+	<body class="kg-content">
+		<header>
+			<h1>Matrix properties</h1>
+		</header>
+		
+		<article class="subsection">
+			<article class="definition">
+			    <h1>Identity matrix</h1>
+			    <p>\(D \times D\) identity matrix is the matrix \(\mathbb{I}_D\) such that \(\mathbb{I}_D [k,k] = 1 \,\,\,\, \forall k \in D\) and <em>zero elsewhere</em>. E.g.,
+			    $$\mathbb{I}_3 = \left[\begin{matrix}
+			        1 & 0 & 0 \\
+			        0 & 1 & 0 \\
+			        0 & 0 & 1
+			    \end{matrix}\right]$$</p>
+			</article>
+		</article>
+		
+		<article class="subsection">
+		    <h1>Transpose</h1>
+		    <ul>
+		        <li>transpose <em>swaps</em> rows and columns</li>
+		        <li>denoted as \(M^T\)</li>
+		        <li>example:
+		        $$\left[\begin{matrix}
+		            a_{11} & a_{12} & a_{13} \\
+		            a_{21} & a_{22} & a_{23}
+		        \end{matrix}\right]^T
+		        
+		        \longrightarrow
+		        
+		        \left[\begin{matrix}
+		            a_{11} & a_{21} \\
+		            a_{12} & a_{22} \\
+		            a_{13} & a_{23}
+		        \end{matrix}\right]
+		        
+		        $$</li>
+		    </ul>
+		        
+		        <h2 id="">transpose properties</h2>
+		        <ul>
+		            <li>\(\left(AB \right)^T = B^T  A^T\)</li>
+		            <li></li>
+		        </ul>
+		        
+		    
+		    
+		</article>
+		
+		<article class="subsection">
+		    <h1>Column space and row space</h1>
+		    <p>Two vectors spaces associated with a matrix \(M\):</p>
+		    <ol>
+		        <li><em>column space</em> of \(M\): \(\text{Col M} = Span\{\text{columns of M}\}\)</li>
+		        <li><em>row space</em> of \(M\): \(\text{Row M} = Span\{\text{rows of M}\}\)</li>
+		    </ol>
+		</article>
+		
+		<article class="subsection">
+		    <h1><i>Null</i> space</h1>
+		    <article class="definition">
+		        <h1>Null \(A\)</h1>
+		        <p><i>Null</i> space of a matrix \(A\) is \(\left\{ \mathbf{u} \, : \, A * \mathbf{u} = \mathbf{0} \right\}\)</p>
+		    </article>
+		    
+		    <article class="observation">
+		        <h1></h1>
+		        <p><i>Null</i> space of a matrix is a <em>vector space</em></p>
+		    </article>
+		    
+		    
+		</article>
+		
+	</body>
+</html>	

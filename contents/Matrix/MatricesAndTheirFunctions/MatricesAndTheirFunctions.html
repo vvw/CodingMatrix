@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Matrices and their functions</title>
+		<link rel="shortcut icon" type="image/x-icon" href="../../../../../KonoMngr/style/icons/konoicn.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="../../../../../KonoMngr/style/konoguides.css" />
+		<script src="../../../../../KonoMngr/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+  				TeX: { equationNumbers: { autoNumber: "AMS" } }
+			});</script>
+		<link rel="stylesheet" href="../../../../../KonoMngr/highlight/styles/googlecode.css">
+		<script src="../../../../../KonoMngr/highlight/highlight.pack.js" type="text/javascript"></script>
+		<script>hljs.initHighlightingOnLoad();</script>		
+	</head>
+	
+	<body class="kg-content">
+		<header>
+			<h1>Matrices and their functions</h1>
+		</header>
+		
+		<article class="subsection">
+		    <h1>Linear functions</h1>
+		    <p>Linear functions satisfies <em>two properties</em>. Let \(\mathcal{V}\) and \(\mathcal{W}\) be vector spaces over a field \(\mathbb{F}\). Linear function \(f:\mathcal{V} \rightarrow \mathcal{W}\) satisfies:</p>
+		    <ul>
+		        <li>\(\forall \mathbf{v} \in \mathcal{V}\) and \(\forall \alpha \in \mathbb{F}\),
+		        $$f(\alpha \mathbf{v}) = \alpha f(\mathbf{v})$$</li>
+		        <li>\(\forall \mathbf{u}, \mathbf{v} \in \mathcal{V}\),
+		        $$f(\mathbf{u} + \mathbf{v}) = f(\mathbf{u}) + f(\mathbf{v})$$</li>
+		    </ul>
+		    
+		    <article class="note">Any <em>linear function</em> can be expressed  as a <em>matrix-vector multiplication function</em></article>
+		    
+		</article>
+		
+		<article class="subsection">
+		    <h1>Kernel of a linear function</h1>
+		    <article class="definition">
+		        <h1>Kernel</h1>
+		        <p>The <em>kernel</em> of a linear function \(f\) is,
+		        $$\{\mathbf{v}:f(\mathbf{v})=\mathbf{0}\}$$
+		        written \(\text{Ker } f\)</p>
+		        <p>For a funrcion \(f(\mathbf{x} = M * \mathbf{x})\),
+		        $$\text{Ker } f = \text{Null } M$$</p>
+		    </article>
+		    
+		    <article class="lemma">
+		        <h1>One-to-one</h1>
+		        <p>A <em>linear function is one-to-one</em> iif its kernel is a trivial vector space.</p>
+		    </article>
+		</article>
+		
+		<article class="subsection">
+			<h1>Matrix-vector multiplication function</h1>
+			<p>In this section we will study the relationship between a matrix \(M\) and the function \(f_M: \mathbf{x} \mapsto M*\mathbf{x}\):</p>
+			<ul>
+			    <li><em>easy</em>: going from a matrix \(M\) to the function \(f_M: \mathbf{x} \mapsto M*\mathbf{x}\)</li>
+			    <li><em>a little harder</em>: going from the function \(f_M: \mathbf{x} \mapsto M*\mathbf{x}\) to the matrix \(M\)</li>
+			</ul>
+			<p>in studying this relationship, we come up with the fundamental notion of <em>linar function</em>.</p>
+			
+			<h2 id="">from matrrix to function</h2>
+			<p>If \(M\) is an \(R \times C\) matrix over \(\mathbb{F}\), define the function \(f(\mathbf{x}) = M * \mathbf{x}\):</p>
+			<ul>
+			    <li><em>domain</em> of \(f\) if <em>\(\mathbb{F}^C\)</em></li>
+			    <li><em>co-domain</em> of \(f\) if <em>\(\mathbb{R}^C\)</em></li>
+			</ul>
+			
+			<h2 id="">from function to matrix</h2>
+			<ul>
+			    <li>have a function \(f:\mathbb{F}^A \rightarrow \mathbb{F}^B\)</li>
+			    <li>want to compute maytix \(M\) such that \(f(\mathbf{x}) = M * \mathbf{x}\)</li>
+			    <li> by domain an codomain we now that \(M\) must be an \(B \times A\) matrix</li>
+			    <li>finding the entries:
+			        <ul>
+			            <li>write mystery matrix in therms of its columns:
+			            $$M = \left[\begin{array}{c|c|c}
+			                \mathbf{v}_1 & \cdots & \mathbf{v}_n
+			            \end{array}\right]$$</li>
+			            <li>use <em>standard generators</em> \(\mathbf{e}_1 = [1,0, \ldots, 0,0], \ldots, \mathbf{e}_n = [0, \ldots, 0,1]\) to determine each column using the <i>known</i> function:
+			                <ul>
+			                    <li>\(f(\mathbf{e}_1) = \mathbf{v}_1\) so first column is \(\mathbf{v}_1\)</li>
+			                    <li>\(\ldots\)</li>
+			                    <li>\(f(\mathbf{e}_n) = \mathbf{v}_n\) so first column is \(\mathbf{v}_n\)</li>
+			                </ul>
+			                
+			            </li>
+			        </ul>
+			        
+			    </li>
+			</ul>
+		</article>
+		
+		<article class="subsection">
+		    <h1>Inverse</h1>
+		    <p>Matrices \(A\) and \(B\) \(\Longrightarrow\) functions \(f(\mathbf{y}) = A * \mathbf{y}\) and \(g(\mathbf{x}) = B * \mathbf{x}\) and \(h(\mathbf{x}) = (AB) * \mathbf{x}\),</p>
+		    
+		    <article class="definition">
+		        <h1>Matrix inverse</h1>
+		        <p>If \(f\) and \(g\) are functional inverses of each other, we say \(A\) and \(B\) are matrix inverses of each other</p>
+		    </article>
+		    
+		    <article class="observation">
+		        <h1></h1>
+		        <ul>
+		            <li>If \(A\) and \(B\) are matrix inverses of each other, we say \(A\) and \(B\) are <em>invertible matrices</em></li>
+		            <li>denote the inverse matrix of \(A\) by \(A^{-1}\)</li>
+		        </ul>
+
+		    </article>
+		    
+		    <article class="proposition">
+		        <h1></h1>
+		        <p>If \(A\) and \(B\) are invertible and \(AB\) is defined then \(AB\) is invertible.</p>
+		    </article>
+		    
+		    <h2 id="">why care?</h2>
+		        <ul>
+		            <li>A <em>matrix-vector equation</em> is quaranteed to <em>have</em> exactly on <em>solution if</em> the matrix is <em>invertible</em></li>
+		            <li>Algorithms for solving matrix-vector equations <em>\(A \mathbf{x} = \mathbf{b}\)</em> are simpler if we can assume \(A\) is invertible.</li>
+		            <li>Invertible matrices play a key role in <em>change of basis</em></li>
+		        </ul>
+		        
+		  
+		</article>
+		
+	</body>
+</html>	

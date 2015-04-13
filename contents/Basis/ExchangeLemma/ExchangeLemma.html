@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Exchange lemma</title>
+		<link rel="shortcut icon" type="image/x-icon" href="../../../../../KonoMngr/style/icons/konoicn.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="../../../../../KonoMngr/style/konoguides.css" />
+		<script src="../../../../../KonoMngr/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+  				TeX: { equationNumbers: { autoNumber: "AMS" } }
+			});</script>
+		<link rel="stylesheet" href="../../../../../KonoMngr/highlight/styles/googlecode.css">
+		<script src="../../../../../KonoMngr/highlight/highlight.pack.js" type="text/javascript"></script>
+		<script>hljs.initHighlightingOnLoad();</script>		
+	</head>
+	
+	<body class="kg-content">
+		<header>
+			<h1>Exchange lemma</h1>
+		</header>
+		
+		<article class="subsection">
+			<h1>Simplified exchange lemma</h1>
+			<p>We need a tool to iteratively <em>transform one set of generators into another</em>:</p>
+			<ul>
+			    <li>You have a set \(S\) of generators</li>
+			    <li>You have a vector \(\mathbf{z}\) you want to inject into \(S\)</li>
+			    <li>You want to maintain same size so must eject a vector from \(S\)</li>
+			    <li>You want the span to not change</li>
+			</ul> 
+			
+			<article class="lemma">
+			    <h1>Simplified exchange</h1>
+			    <ul>
+			        <li>Suppose \(S\) is a set of vectors</li>
+			        <li>Suppose \(\mathbf{z}\) is a nonzero vector in \(\text{Span } S\)</li>
+			        <li>Then there is a vector \(\mathbf{w}\) in \(S\) such that
+			        $$\text{Span }\left(S \cup \{\mathbf{z}\} - \{\mathbf{w}\}\right) = \text{Span } S$$</li>
+			    </ul>
+			    
+			</article>
+
+		</article>
+		
+		<article class="subsection">
+		    <h1>Exchange lemma</h1>
+		    <p>Need to enhance the previous lemma. We introduce a set of protected elements \(A\).</p>
+		    
+		    <article class="lemma">
+		        <h1>Exchange lemma</h1>
+		        <ul>
+			        <li>Suppose \(S\) is a set of vectors, and \(A \subset S\)</li>
+			        <li>Suppose \(\mathbf{z}\) is a nonzero vector in \(\text{Span } S\) such that \(A \cup \{\mathbf{z}\}\) is <em>linearly independent</em></li>
+			        <li>Then there is a vector \(\mathbf{w} \in S - A\) such that
+			        $$\text{Span } S = \text{Span }\left(S \cup \{\mathbf{z}\} - \{\mathbf{w}\}\right)$$</li>
+			    </ul>
+		    </article>
+		</article>
+		
+		<article class="subsection">
+		    <h1>Relevant methods</h1>
+		    
+		    <h2 id="">is_superfluous()</h2>
+		    <pre><code>def is_superfluous(S, v):
+    '''
+    Input:
+        - S: set of vectors as instances of Vec class
+        - v: vector in S as instance of Vec class
+    Output:
+        True if the span of the vectors of S is the same
+        as the span of the vectors of S, excluding v.
+
+        False otherwise.
+    '''
+    assert v in S
+    new_S = S - {v}
+
+    # empty space restriction
+    if len(new_S) == 0:
+        if len(v.f) == 0:
+            return True
+        return False
+    basis = coldict2mat(list(new_S))
+    # finding a representation of v in the new basis
+    rep_v = solve(basis, v)
+    err = basis * rep_v - v
+    # if a vector over GF(2)
+    GF2 = False
+    for key in v.f:
+        if isinstance(v.f[key], One):
+            GF2= True
+            break
+    # is the representation addecuate
+    if GF2:
+        if err == Vec(err.D , {}):
+            return True
+        return False
+    else:
+        # if err^2 &lt; 1e-20 is zero, therefore if superfluous
+        if err*err &lt; 1e-20:
+            return True
+        return False</code></pre>
+
+            <h2 id="">is_independent()</h2>
+            <pre><code>def is_independent(S):
+    '''
+    Input:
+        - S: a set of Vecs
+    Output:
+        - boolean: True if vectors in S are linearly independent
+    '''
+    if len(S) == 0:
+        return True
+    if (len(S) == 1):
+        (vect, ) = S
+        if len(vect.f) == 0:
+            return False
+    for vect in S:
+        if is_superfluous(S, vect):
+            return False
+    return True</code></pre>
+                
+            <h2 id="">enchange()</h2>
+            <pre><code>def exchange(S, A, z):
+    '''
+    Input:
+        - S: a set of Vecs (not necessarily linearly independent)
+        - A: a set of Vecs, a proper subset of S
+        - z: an instance of Vec such that A | {z} is linearly independent
+    Output: a vector w in S but not in A such that Span S = Span ({z} | S - {w})
+    '''
+    basis = coldict2mat(list(S))
+    rep = solve(basis, z)
+
+    for alpha, col in zip(rep, basis.D[1]):
+        if alpha != 0:
+            new_v = Vec(z.D, {i:basis[row,col] for i, row in zip(z.D, basis.D[0])})
+            if new_v not in A:
+                return (new_v)</code></pre>
+		    
+		</article>  
+		
+	</body>
+</html>	
